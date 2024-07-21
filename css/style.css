@@ -1,0 +1,198 @@
+/* Reset */
+@import url("https://unpkg.com/modern-css-reset/dist/reset.min.css");
+
+/* Fonts */
+
+/* outfit-300 - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 300;
+  src: url("../assets/fonts/outfit-v11-latin-300.woff2") format("woff2");
+}
+
+/* outfit-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../assets/fonts/outfit-v11-latin-400.woff2") format("woff2");
+}
+
+/* outfit-600 - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 600;
+  src: url("../assets/fonts/outfit-v11-latin-600.woff2") format("woff2");
+}
+
+/* Variables */
+:root {
+  --color-primary-soft-blue: hsl(215, 51%, 70%);
+  --color-primary-cyan: hsl(178, 100%, 50%);
+
+  --color-neutral-very-dark-blue-main: hsl(217, 54%, 11%);
+  --color-neutral-very-dark-blue-card: hsl(216, 50%, 16%);
+  --color-neutral-very-dark-blue-line: hsl(215, 32%, 27%);
+  --color-neutral-white: hsl(0, 0%, 100%);
+
+  --font-primary: "Outfit";
+
+  --easing: 0.3s cubic-bezier(0.33, 0, 0.3, 1);
+}
+
+/* Globals */
+body {
+  font: 400 1.125rem/1.4 var(--font-primary);
+  background-color: var(--color-neutral-very-dark-blue-main);
+  color: #fff;
+  padding-block: 1.5rem;
+  padding-inline: 1.5rem;
+
+  display: grid;
+  place-content: center;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.list__copy,
+.card__author {
+  font-size: clamp(0.9375rem, 4vw, 1.125rem);
+}
+
+/* Specifics */
+.card {
+  background-color: var(--color-neutral-very-dark-blue-card);
+  border-radius: 0.9375rem;
+  padding-block: 1.5rem;
+  padding-inline: 1.5rem;
+  max-width: 21.875rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 0.1219rem 0.1219rem 0.1625rem;
+}
+
+.card__figure {
+  position: relative;
+  cursor: pointer;
+}
+
+.card__image {
+  border-radius: 0.5rem;
+  object-fit: cover;
+}
+
+.card__icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity var(--easing);
+  z-index: 99;
+}
+
+.card__figure::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-primary-cyan);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--easing);
+  border-radius: 0.5rem;
+}
+
+.card__header {
+  margin-block-start: 1.5rem;
+}
+
+.card__title {
+  font-size: 1.375rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  transition: color var(--easing);
+}
+
+.card__description {
+  font-size: 1.125rem;
+  font-weight: 300;
+  color: var(--color-primary-soft-blue);
+}
+
+.card__body {
+  padding-block: clamp(1rem, 4vw, 1.5rem);
+  border-bottom: 0.0625rem solid var(--color-neutral-very-dark-blue-line);
+}
+
+.list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.list__item {
+  display: flex;
+  align-items: center;
+  gap: 0.4375rem;
+}
+
+.list__copy--bright {
+  color: var(--color-primary-cyan);
+}
+
+.list__copy--dark {
+  color: var(--color-primary-soft-blue);
+}
+
+.card__footer {
+  padding-block-start: 1rem;
+  padding-block-end: 0.5rem;
+
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.card__avatar {
+  border-radius: 50%;
+  border: 0.0625rem solid #fff;
+}
+
+.card__author {
+  color: var(--color-primary-soft-blue);
+  transition: color 0.3s cubic-bezier(0.33, 0, 0.3, 1);
+}
+
+.card__name {
+  color: #fff;
+}
+
+/* Hovers */
+.card__title:hover,
+.card__name:hover {
+  color: var(--color-primary-cyan);
+}
+
+.card__figure:hover .card__icon {
+  opacity: 1;
+}
+
+.card__figure:hover::after {
+  opacity: 0.5;
+}
+
+/* Media queries */
